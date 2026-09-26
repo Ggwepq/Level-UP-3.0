@@ -16,6 +16,7 @@ public class CarController : MonoBehaviour
 
         public GameObject wheelModel;
         public WheelCollider wheelCollider;
+        public GameObject wheelEffectObj;
         public Axel axel;
     }
 
@@ -45,6 +46,7 @@ public class CarController : MonoBehaviour
 
         GetInputs();
         AnimatedWheels();
+        WheelEffects();
     }
 
     void LateUpdate()
@@ -65,7 +67,6 @@ public class CarController : MonoBehaviour
         foreach (var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque = moveInput * 1000 * maxAcceleration * Time.deltaTime;
-                Debug.Log(wheel.wheelCollider.motorTorque);
         }
     }
 
@@ -85,7 +86,6 @@ public class CarController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Braking True");
             foreach (var wheel in wheels)
             {
                 wheel.wheelCollider.brakeTorque = 600 * brakeAcceleration * Time.deltaTime;
@@ -93,7 +93,6 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Braking False");
             foreach (var wheel in wheels)
             {
                 wheel.wheelCollider.brakeTorque = 0;
@@ -114,5 +113,21 @@ public class CarController : MonoBehaviour
             wheel.wheelModel.transform.position = pos;
             wheel.wheelModel.transform.rotation = rot;
         }
+    }
+
+    void WheelEffects()
+    {
+        foreach (var wheel in wheels)
+        {
+            if (Input.GetKey(KeyCode.Space) && wheel.axel == Axel.Rear)
+            {
+                wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = true;
+            }
+            else
+            {
+                wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = false;
+            }
+        }
+        
     }
 }
