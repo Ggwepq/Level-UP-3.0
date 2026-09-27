@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9149391757020741835
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,31 +20,27 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Color
+  m_Name: Terrain
   m_Shader: {fileID: 4800000, guid: be891319084e9d147b09d89e80ce60e0, type: 3}
-  m_ShaderKeywords: _EMISSIVE_ANIMATION _IS_ANGELRING_OFF _IS_CLIPPING_TRANSMODE
-    _IS_OUTLINE_CLIPPING_YES _OUTLINE_NML
+  m_ShaderKeywords: _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
+    _OUTLINE_NML
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
-    IgnoreProjection: true
-    RenderType: Transparent
+    IgnoreProjection: False
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_b2970520f1304f3eb03a771a418231d8:
-        m_Texture: {fileID: 2800000, guid: d1f1048909d55cd4fa1126ab998f617e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AngelRing_Sampler:
@@ -51,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -103,7 +112,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
@@ -123,7 +132,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -211,7 +220,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Textures:
-        m_Texture: {fileID: 2800000, guid: c34a4dd41a9675643a9eef56e38c32c3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
@@ -235,11 +244,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _1st2nd_Shades_Feather: 1
+    - _1st2nd_Shades_Feather: 0.25
     - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.692
-    - _2nd_ShadeColor_Feather: 1
-    - _2nd_ShadeColor_Step: 0
+    - _1st_ShadeColor_Step: 0.609
+    - _2nd_ShadeColor_Feather: 0.25
+    - _2nd_ShadeColor_Step: 0.958
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ARSampler_AlphaOn: 0
@@ -268,7 +277,7 @@ Material:
     - _AutoRenderQueue: 1
     - _BaseColorOverridden: 0
     - _BaseColorVisible: 1
-    - _BaseColor_Step: 0.692
+    - _BaseColor_Step: 0.609
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _Blend: 0
@@ -281,7 +290,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ClippingMatteMode: 0
-    - _ClippingMode: 2
+    - _ClippingMode: 0
     - _Clipping_Level: 0
     - _CoatMask: 0
     - _ColorShift_Speed: 0
@@ -318,7 +327,7 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _EMISSIVE: 1
+    - _EMISSIVE: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
@@ -332,9 +341,9 @@ Material:
     - _FirstShadeOverridden: 0
     - _FirstShadeVisible: 1
     - _GI_Intensity: 0
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -355,7 +364,7 @@ Material:
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _IsBaseMapAlphaAsClippingMask: 0
-    - _Is_BLD: 1
+    - _Is_BLD: 0
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
@@ -388,10 +397,9 @@ Material:
     - _LinkDetailsWithBase: 1
     - _MatCap: 0
     - _MaterialID: 1
-    - _Max: 1.046
+    - _Max: 0.75
     - _Metallic: 0
-    - _Min: 1.04
-    - _Mode: 0
+    - _Min: 0.48
     - _Nearest_Distance: 0.5
     - _NormalMapSpace: 0
     - _NormalScale: 1
@@ -403,37 +411,37 @@ Material:
     - _Offset_Z: 0
     - _OutlineOverridden: 0
     - _OutlineVisible: 1
-    - _Outline_Width: 10
+    - _Outline_Width: 0
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
-    - _RimLight: 1
+    - _RimLight: 0
     - _RimLightOverridden: 0
     - _RimLightVisible: 1
     - _RimLight_FeatherOff: 0
-    - _RimLight_InsideMask: 0.633
-    - _RimLight_Power: 0.975
+    - _RimLight_InsideMask: 0.0001
+    - _RimLight_Power: 0.1
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
-    - _SPRDefaultUnlitColorMask: 0
-    - _SRPDefaultUnlitColMode: 2
+    - _SPRDefaultUnlitColorMask: 15
+    - _SRPDefaultUnlitColMode: 1
     - _SSRefractionProjectionModel: 0
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _SecondShadeOverridden: 0
     - _SecondShadeVisible: 1
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0
-    - _Shades: -0.04
-    - _Smoothness: 0
+    - _ShadeColor_Step: 0.958
+    - _Shades: -0.13
+    - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
@@ -472,7 +480,7 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
-    - _TransparentEnabled: 1
+    - _TransparentEnabled: 0
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
@@ -484,25 +492,24 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.267
+    - _Tweak_SystemShadowsLevel: -0.317
     - _Tweak_transparency: 0
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _UVSec: 0
     - _Unlit_Intensity: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
-    - _ZOverDrawMode: 1
+    - _ZOverDrawMode: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 8
     - _ZTestTransparent: 4
     - _ZWrite: 1
-    - _ZWriteMode: 0
+    - _ZWriteMode: 1
     - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
@@ -510,17 +517,15 @@ Material:
     - _utsVersionY: 10
     - _utsVersionZ: 2
     m_Colors:
-    - Color_a4660dad8e4840609f4448973554925b: {r: 0.3018868, g: 0.23456654, b: 0.18939124, a: 0}
-    - Color_e2bb8e840033477c8d8b4139b32be8f2: {r: 0.9433962, g: 0, b: 0, a: 0}
-    - _1st_ShadeColor: {r: 0.7264151, g: 0.307803, b: 0, a: 1}
-    - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _1st_ShadeColor: {r: 0.9202411, g: 1, b: 0.6462264, a: 1}
+    - _2nd_ShadeColor: {r: 0.84633, g: 0.8867924, b: 0, a: 1}
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.37802044, g: 0.509434, b: 0.3292097, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColorMaskColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.3780204, g: 0.509434, b: 0.32920966, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
@@ -535,8 +540,8 @@ Material:
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineMaskColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _RimLightColor: {r: 1, g: 0.4755912, b: 0.031372547, a: 1}
+    - _Outline_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimLightMaskColor: {r: 1, g: 0, b: 1, a: 1}
     - _SecondShadeMaskColor: {r: 0, g: 0, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
@@ -549,16 +554,3 @@ Material:
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
     - emissive: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &735526599213566059
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4
