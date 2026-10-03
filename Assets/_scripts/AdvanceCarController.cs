@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class AdvanceCarController : MonoBehaviour
+public class AdvanceCarController : NetworkBehaviour
 {
     public enum Axel
     {
@@ -106,7 +107,7 @@ public class AdvanceCarController : MonoBehaviour
     WheelCollider frontLeft, frontRight, rearLeft, rearRight;
     bool hasFrontPair, hasRearPair;
 
-    void Start()
+    void Awake()
     {
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
@@ -136,6 +137,34 @@ public class AdvanceCarController : MonoBehaviour
         hasRearPair = TryFindPair(Axel.Rear, out rearLeft, out rearRight);
     }
 
+    public override void OnNetworkSpawn()
+    {
+        // Only the owning client reads input and simulates. Everyone else just
+        // sees the result via NetworkTransform, so their WheelCollider physics
+        // would otherwise fight the synced position.
+        if (!IsOwner)
+        {
+            carRb.isKinematic = true;
+            enabled = false; // stop Update/FixedUpdate on remote copies entirely
+            return;
+        }
+
+        AdvanceCameraFollow cam = Camera.main != null ? Camera.main.GetComponent<AdvanceCameraFollow>() : null;
+        if (cam != null)
+        {
+            cam.carTarget = transform;
+            cam.carRigidbody = carRb;
+            cam.Snap();
+        }
+        else
+        {
+            Debug.LogWarning("CarController: no CameraFollow found on Camera.main when this car spawned.");
+        }
+
+        // Only your own car's engine sound should follow 2D-ish full volume;
+        // give it away and set remote cars to 3D spatial in the prefab instead.
+    }
+
     void Update()
     {
         GetInputs();
@@ -157,14 +186,16 @@ public class AdvanceCarController : MonoBehaviour
 
     void GetInputs()
     {
-        moveInput = Input.GetAxis("Vertical");
+        // Raw input: GetAxis("Vertical") is smoothed by Unity, so after holding W it takes a
+        // moment to swing from +1 to -1 and the brake logic reacts late.
+        moveInput = Input.GetAxisRaw("Vertical");
         steerInput = Input.GetAxis("Horizontal");
         handbrake = Input.GetKey(handbrakeKey);
     }
 
     void UpdateState()
     {
-        forwardSpeed = Vector3.Dot(carRb.velocity, transform.forward);
+        forwardSpeed = Vector3.Dot(carRb.linearVelocity, transform.forward);
         speedKmh = Mathf.Abs(forwardSpeed) * 3.6f;
 
         isGrounded = false;
@@ -257,7 +288,7 @@ public class AdvanceCarController : MonoBehaviour
     void ApplyStability()
     {
         if (isGrounded && downforce > 0f)
-            carRb.AddForce(-transform.up * downforce * carRb.velocity.magnitude);
+            carRb.AddForce(-transform.up * downforce * carRb.linearVelocity.magnitude);
 
         if (antiRollForce > 0f)
         {
@@ -360,7 +391,7 @@ public class AdvanceCarController : MonoBehaviour
     /// <summary>Flips the car upright in place. Handy when testing.</summary>
     public void ResetUpright()
     {
-        carRb.velocity = Vector3.zero;
+        carRb.linearVelocity = Vector3.zero;
         carRb.angularVelocity = Vector3.zero;
         transform.position += Vector3.up * 1f;
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);

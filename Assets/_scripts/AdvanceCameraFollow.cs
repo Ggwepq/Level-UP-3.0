@@ -196,7 +196,7 @@ public class AdvanceCameraFollow : MonoBehaviour
 
         smoothedPivot = carTarget.position;
         lastTargetPos = carTarget.position;
-        lastVelocity = carRigidbody != null ? carRigidbody.velocity : Vector3.zero;
+        lastVelocity = carRigidbody != null ? carRigidbody.linearVelocity : Vector3.zero;
 
         Quaternion yawRot = Quaternion.Euler(0f, currentYaw, 0f);
         Vector3 pos = smoothedPivot + yawRot * moveOffset;
@@ -217,7 +217,7 @@ public class AdvanceCameraFollow : MonoBehaviour
     {
         if (!shakeOnImpact || carRigidbody == null) return;
 
-        Vector3 v = carRigidbody.velocity;
+        Vector3 v = carRigidbody.linearVelocity;
         float change = (v - lastVelocity).magnitude;
         lastVelocity = v;
 
@@ -250,7 +250,7 @@ public class AdvanceCameraFollow : MonoBehaviour
     void UpdateKinematics(float dt)
     {
         Vector3 vel;
-        if (carRigidbody != null) vel = carRigidbody.velocity;
+        if (carRigidbody != null) vel = carRigidbody.linearVelocity;
         else vel = (carTarget.position - lastTargetPos) / dt;
         lastTargetPos = carTarget.position;
 
